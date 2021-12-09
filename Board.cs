@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WorldApp
 {
@@ -16,22 +14,28 @@ namespace WorldApp
             this.x_size = x_size;
             this.y_size = y_size;
         }
-
-        public int get_size()
+        public void Kill(Entity e, string reason="")
         {
-            return 1;
+            if (reason == "")
+            {
+                Console.WriteLine(String.Format("{0} died", e.GetName()));
+            }
+            else
+            {
+                Console.WriteLine(String.Format("{0} died due to {1}", e.GetName(), reason));
+            }
+            entities.Remove(e);
         }
-        public void kill(Entity e)
+        public void Add(Entity e)
         {
-
+            entities.Add(e);
         }
-        public void add(Entity e)
+        public void Update()
         {
-
-        }
-        public void display(Entity e)
-        {
-
+            foreach (Organism o in entities.ToList())
+            {
+                o.LoseEnergy(this);
+            }
         }
     }
 }

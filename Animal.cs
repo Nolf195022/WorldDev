@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WorldApp
+﻿namespace WorldApp
 {
-    class Animal : Organism
+    public abstract class Animal : Organism
     {
         private int visionrange;
         private int contactrange;
         private bool femalegender;
-        public Animal(string name, int x, int y, int maxhealt, int maxenergy, int visionrange, int contactrange):
-            base(name, x, y, maxhealt, maxenergy)
+        public Animal(string name, int maxhealt, int maxenergy, int visionrange, int contactrange) :
+            base(name, maxhealt, maxenergy)
         {
             this.visionrange = visionrange;
             this.contactrange = contactrange;

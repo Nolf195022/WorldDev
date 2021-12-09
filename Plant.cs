@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WorldApp
+﻿namespace WorldApp
 {
-    class Plant : Organism
+    public abstract class Plant : Organism
     {
         private int rootrange;
         private int extendrange;
-        public Plant(string name, int x, int y, int maxhealt, int maxenergy, int rootrange, int extendrange):
-            base(name, x, y, maxhealt, maxenergy)
+        public Plant(string name, int maxhealt, int maxenergy, int rootrange, int extendrange) :
+            base(name, maxhealt, maxenergy)
         {
             this.rootrange = rootrange;
             this.extendrange = extendrange;
         }
-        public void Eat(OrganicWaste organicWaste)
+        public void Eat(OrganicWaste organicwaste)
         {
 
         }

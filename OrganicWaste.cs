@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WorldApp
+﻿namespace WorldApp
 {
-    class OrganicWaste : Entity
+    public class OrganicWaste : Entity
     {
-        public OrganicWaste(string name, int x, int y):
-            base(name, x, y)
+        public OrganicWaste() :
+            base("Organic waste")
         {
         }
     }
