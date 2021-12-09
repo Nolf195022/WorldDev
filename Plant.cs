@@ -10,8 +10,8 @@ namespace WorldApp
     {
         private int rootrange;
         private int extendrange;
-        public Plant(string name, Image image, int x, int y, int maxhealt, int maxenergy, int rootrange, int extendrange):
-            base(name, image, x, y, maxhealt, maxenergy)
+        public Plant(string name, int x, int y, int maxhealt, int maxenergy, int rootrange, int extendrange):
+            base(name, x, y, maxhealt, maxenergy)
         {
             this.rootrange = rootrange;
             this.extendrange = extendrange;

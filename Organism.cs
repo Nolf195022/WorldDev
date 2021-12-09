@@ -10,8 +10,8 @@ namespace WorldApp
     {
         private int healt;
         private int energy;
-        public Organism(string name, Image image, int x, int y, int maxhealt, int maxenergy):
-            base(name, image, x, y)
+        public Organism(string name, int x, int y, int maxhealt, int maxenergy):
+            base(name, x, y)
         {
             this.healt = maxhealt;
             this.energy = maxenergy;

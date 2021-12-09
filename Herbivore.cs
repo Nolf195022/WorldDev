@@ -8,8 +8,8 @@ namespace WorldApp
 {
     class Herbivore : Animal
     {
-        public Herbivore(string name, Image image, int x, int y, int maxhealt, int maxenergy, int visionrange, int contactrange):
-            base(name, image, x, y, maxhealt, maxenergy, visionrange, contactrange)
+        public Herbivore(string name, int x, int y, int maxhealt, int maxenergy, int visionrange, int contactrange):
+            base(name, x, y, maxhealt, maxenergy, visionrange, contactrange)
         {
         }
         public void Eat(Plant plant)

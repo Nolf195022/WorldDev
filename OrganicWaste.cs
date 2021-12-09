@@ -8,8 +8,8 @@ namespace WorldApp
 {
     class OrganicWaste : Entity
     {
-        public OrganicWaste(string name, Image image, int x, int y):
-            base(name, image, x, y)
+        public OrganicWaste(string name, int x, int y):
+            base(name, x, y)
         {
         }
     }

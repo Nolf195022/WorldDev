@@ -8,14 +8,11 @@ namespace WorldApp
 {
     public class Board
     {
-        public Image image;
         public int x_size;
         public int y_size;
-        public List<Entity> entities;
-        public Board(Image image, int x_size, int y_size)
+        public List<Entity> entities = new List<Entity>();
+        public Board(int x_size, int y_size)
         {
-
-            this.image = image;
             this.x_size = x_size;
             this.y_size = y_size;
         }
@@ -36,6 +33,5 @@ namespace WorldApp
         {
 
         }
-
     }
 }

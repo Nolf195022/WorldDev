@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace WorldApp
 {
-    abstract class Entity
+    public abstract class Entity
     {
         private string name;
-        private Image image;
         private int x_pos;
         private int y_pos;
-        public Entity(string name, Image image, int x, int y)
+        public Entity(string name, int x, int y)
         {
             this.name = name;
-            this.image = image;
             this.x_pos = x;
             this.y_pos = y;
         }

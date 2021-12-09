@@ -11,8 +11,8 @@ namespace WorldApp
         private int visionrange;
         private int contactrange;
         private bool femalegender;
-        public Animal(string name, Image image, int x, int y, int maxhealt, int maxenergy, int visionrange, int contactrange):
-            base(name, image, x, y, maxhealt, maxenergy)
+        public Animal(string name, int x, int y, int maxhealt, int maxenergy, int visionrange, int contactrange):
+            base(name, x, y, maxhealt, maxenergy)
         {
             this.visionrange = visionrange;
             this.contactrange = contactrange;
