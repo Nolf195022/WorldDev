@@ -1,4 +1,4 @@
-﻿namespace WorldApp
+﻿namespace WorldDev
 {
     class Meat : Entity
     {

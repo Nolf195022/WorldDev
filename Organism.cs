@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorldApp
+namespace WorldDev
 {
     public abstract class Organism : Entity
     {

@@ -1,4 +1,4 @@
-﻿namespace WorldApp
+﻿namespace WorldDev
 {
     public class OrganicWaste : Entity
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorldApp
+namespace WorldDev
 {
     public abstract class Entity
     {

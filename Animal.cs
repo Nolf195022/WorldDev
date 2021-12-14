@@ -1,4 +1,4 @@
-﻿namespace WorldApp
+﻿namespace WorldDev
 {
     public abstract class Animal : Organism
     {

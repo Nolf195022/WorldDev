@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WorldApp
+namespace WorldDev
 {
     public class Board
     {
