@@ -22,5 +22,15 @@ namespace WorldDev
         {
             return this.name;
         }
+        public void Move(int dx, int dy)
+        {
+            this.x_pos += dx;
+            this.y_pos += dy;
+        }
+        public void AssignPos(int x, int y)
+        {
+            this.x_pos = x;
+            this.y_pos = y;
+        }
     }
 }

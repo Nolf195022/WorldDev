@@ -6,11 +6,15 @@ namespace WorldDev
     {
         private int healt;
         private int energy;
+        private int maxhealt;
+        private int maxenergy;
         public Organism(string name, int maxhealt, int maxenergy):
             base(name)
         {
             this.healt = maxhealt;
             this.energy = maxenergy;
+            this.maxhealt = maxhealt;
+            this.maxenergy = maxenergy;
         }
         public void HealtToEnergy(Board board)
         {
@@ -31,6 +35,10 @@ namespace WorldDev
             {
                 this.HealtToEnergy(board);
             }
+        }
+        public void AddEnergy()
+        {
+            this.energy = this.maxenergy; 
         }
     }
 }

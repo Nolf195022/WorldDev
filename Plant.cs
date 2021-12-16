@@ -10,9 +10,10 @@
             this.rootrange = rootrange;
             this.extendrange = extendrange;
         }
-        public void Eat(OrganicWaste organicwaste)
+        public void Eat(OrganicWaste organicwaste, Board board)
         {
-
+            board.Kill(organicwaste, "eat");
+            this.AddEnergy();
         }
         public void Extend()
         {

@@ -6,6 +6,7 @@ namespace WorldDev
 {
     public class Board
     {
+        Random random = new Random();
         public int x_size;
         public int y_size;
         public List<Entity> entities = new List<Entity>();
@@ -20,6 +21,10 @@ namespace WorldDev
             {
                 Console.WriteLine(String.Format("{0} died", e.GetName()));
             }
+            else if(reason == "eaten")
+            {
+                Console.WriteLine(String.Format("{0} has been eaten by {1}", e.GetName(), reason));
+            }
             else
             {
                 Console.WriteLine(String.Format("{0} died due to {1}", e.GetName(), reason));
@@ -29,6 +34,7 @@ namespace WorldDev
         public void Add(Entity e)
         {
             entities.Add(e);
+            e.AssignPos(random.Next(x_size),random.Next(y_size));
         }
         public void Update()
         {
