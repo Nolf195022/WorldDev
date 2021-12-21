@@ -6,7 +6,7 @@
             base(name, maxhealt, maxenergy, visionrange, contactrange)
         {
         }
-        public void Eat(Plant plant)
+        public void Eat(Plant plant) 
         {
 
         }
