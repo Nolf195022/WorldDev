@@ -20,7 +20,7 @@
         {
             if (visionrange == contactrange)
             {
-                Board.Kill(animal, "attack");
+                board.Kill(animal, "attack");
                 Console.WriteLine(String.Format("{0} attacked {1}", this.GetName, animal.GetName()));
             }
         }

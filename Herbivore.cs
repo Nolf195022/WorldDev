@@ -8,7 +8,7 @@
         }
         public void Eat(Plant plant) 
         {
-            Board.Kill(plant , "eatan");
+            board.Kill(plant , "eatan");
             this.AddEnergy();
 
 

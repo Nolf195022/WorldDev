@@ -6,7 +6,7 @@ namespace WorldDev
     {
         static void Main(string[] args)
         {
-            Board map = new Board(500, 500);
+            board map = new board(500, 500);
             Plant rose = new Rose();
             map.Add(rose);
             rose.GetPos().ForEach(Console.WriteLine);

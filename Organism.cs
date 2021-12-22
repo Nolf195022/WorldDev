@@ -16,7 +16,7 @@ namespace WorldDev
             this.maxhealt = maxhealt;
             this.maxenergy = maxenergy;
         }
-        public void HealtToEnergy(Board board)
+        public void HealtToEnergy(board board)
         {
             const int amount = 5;
             this.healt -= amount;
@@ -28,7 +28,7 @@ namespace WorldDev
             this.energy += amount;
             Console.WriteLine(String.Format("{0} has converted {1} health ({2} left) into {1} energy", this.GetName(), amount, this.healt));
         }
-        public void LoseEnergy(Board board)
+        public void LoseEnergy(board board)
         {
             this.energy -= 1; 
             if (this.energy == 0)

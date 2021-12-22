@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace WorldDev
 {
-    public class Board
+    public class board
     {
         Random random = new Random();
         public int x_size;
         public int y_size;
         public List<Entity> entities = new List<Entity>();
-        public Board(int x_size, int y_size)
+        public board(int x_size, int y_size)
         {
             this.x_size = x_size;
             this.y_size = y_size;
