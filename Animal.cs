@@ -14,15 +14,19 @@
         }
         public void Reproduce(Animal animal)
         {
-
+            Add(animal);
         }
         public void Attack(Animal animal)
         {
-
+            if (visionrange == contactrange)
+            {
+                Board.Kill(animal, "attack");
+                Console.WriteLine(String.Format("{0} attacked {1}", this.GetName, animal.GetName()));
+            }
         }
         public void Move(Animal animal)
         {
-
+            this.Move(Random.Next(10), Random.Next(10));
         }
     }
 }

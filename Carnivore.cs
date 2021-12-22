@@ -14,7 +14,8 @@ namespace WorldDev
         }
         public void Eat(Meat meat)
         {
-
+            Board.Kill(meat, "eaten");
+            this.AddEnergy();
         }
     }
 }
