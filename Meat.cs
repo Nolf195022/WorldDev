@@ -1,18 +1,16 @@
-﻿namespace WorldDev
+﻿using System;
+namespace WorldDev
 {
-    class Meat : Entity
+    public class Meat : Entity
     {
-        public Meat(string name) :
+        public Meat() :
             base("Meat")
         {
         }
-        private void ToOrganicWaste()
+        private void ToOrganicWaste(Board board)
         {
-            board.Kill(this, "waste");
-            Add(OrganicWaste);
-            Console.WriteLine(String.Format("{0} is converted into OrganicWaste", this.GetName()));
-            
+            board.Kill(this, String.Format("Expired meat (at position {0}) is becoming organic waste.",this.GetPos()));
+            board.Add(new OrganicWaste());
         }
-    }
     }
 }

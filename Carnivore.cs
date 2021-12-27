@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace WorldDev
 {
-    class Carnivore : Animal
+    public abstract class Carnivore : Animal
     {
-        public Carnivore(string name, int maxhealt, int maxenergy, int visionrange, int contactrange):
-            base(name, maxhealt, maxenergy, visionrange, contactrange)
+        public Carnivore(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage) :
+            base(name, maxhealt, maxenergy, visionrange, contactrange, attack_damage)
         {
         }
-        public void Eat(Meat meat)
+        public void Eat(Meat meat, Board board)
         {
-            board.Kill(meat, "eaten");
+            board.Kill(meat, String.Format("{0} has been eaten by {1}", meat.GetName(),  this.GetName()));
             this.AddEnergy();
         }
     }

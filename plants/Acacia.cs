@@ -3,8 +3,12 @@
     public class Acacia : Plant
     {
         public Acacia() :
-            base("Acacia", 500, 40, 30, 40)
+            base("Acacia", 500, 200, 30, 40)
         {
+        }
+        public void Extend(Board board)
+        {
+            board.Add(new Acacia());
         }
     }
 }

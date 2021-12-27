@@ -1,4 +1,6 @@
-﻿namespace WorldDev
+﻿using System;
+
+namespace WorldDev
 {
     public abstract class Plant : Organism
     {
@@ -10,14 +12,11 @@
             this.rootrange = rootrange;
             this.extendrange = extendrange;
         }
-        public void Eat(OrganicWaste organicwaste, board board)
-        {
-            board.Kill(organicwaste, "eat");
-            this.AddEnergy();
-        }
-        public void Extend()
-        {
 
+        public void Eat(OrganicWaste organicwaste, Board board)
+        {
+            board.Kill(organicwaste, String.Format("{0} has been eaten by {1}", organicwaste.GetName(), this.GetName()));
+            this.AddEnergy();
         }
     }
 }

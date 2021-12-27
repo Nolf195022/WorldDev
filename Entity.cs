@@ -11,12 +11,9 @@ namespace WorldDev
         {
             this.name = name;
         }
-        public List<int> GetPos()
+        public (int,int) GetPos()
         {
-            List<int> pos = new List<int>(2);
-            pos.Add(this.x_pos);
-            pos.Add(this.y_pos);
-            return pos;
+            return (this.x_pos,this.y_pos);
         }
         public string GetName()
         {
@@ -31,6 +28,17 @@ namespace WorldDev
         {
             this.x_pos = x;
             this.y_pos = y;
+        }
+        public bool IsInRange(int x, int y, int range)
+        {
+            int xmin = this.x_pos - range;
+            int xmax = this.x_pos + range;
+            int ymin = this.y_pos - range;
+            int ymax = this.y_pos + range;
+            if ((x > xmin) && (x < xmax) && (y > ymin) && (y < ymax)){
+                return true;
+            }
+            return false;
         }
     }
 }
