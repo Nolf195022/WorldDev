@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace WorldDev
 {
@@ -171,6 +172,8 @@ namespace WorldDev
         {
             foreach (Entity entity in entities.ToList())
             {
+                if (typeof(OrganicWaste).IsAssignableFrom(entity.GetType())) { continue; }
+                //Thread.Sleep(loop_cooldown);
                 entity.Update(this);
             }
         }

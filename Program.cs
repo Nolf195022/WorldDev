@@ -39,7 +39,6 @@ namespace WorldDev
             }
             while(map.GetPop()>0)
             {
-                //Thread.Sleep(250);
                 map.Update();
             }
         }

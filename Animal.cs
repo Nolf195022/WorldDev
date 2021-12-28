@@ -64,7 +64,7 @@ namespace WorldDev
                         pregnancyprogress = 0;
                         pregnancycooldown = 1000;
                         Random generator = new();
-                        bool doreprod = generator.Next(100) <= 30;
+                        bool doreprod = generator.Next(100) <= 60;
                         if (doreprod)
                         {
                             Reproduce(board);
