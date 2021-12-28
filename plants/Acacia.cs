@@ -3,7 +3,7 @@
     public class Acacia : Plant
     {
         public Acacia() :
-            base("Acacia", 500, 200, 30, 40)
+            base("Acacia", 500, 200, 30, 40, 300)
         {
         }
         public override void Extend(Board board)

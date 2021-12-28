@@ -3,7 +3,7 @@
     public class Tulipe : Plant
     {
         public Tulipe() :
-            base("Tulipe", 30, 80, 15, 20)
+            base("Tulipe", 30, 80, 15, 20, 50)
         {
         }
         public override void Extend(Board board)

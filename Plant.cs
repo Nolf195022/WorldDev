@@ -7,11 +7,13 @@ namespace WorldDev
         public readonly int rootrange;
         public readonly int extendrange;
         protected int lifetime = 0 ;
-        public Plant(string name, int maxhealt, int maxenergy, int rootrange, int extendrange) :
+        protected int reprod_delay;
+        public Plant(string name, int maxhealt, int maxenergy, int rootrange, int extendrange, int reprod_delay) :
             base(name, maxhealt, maxenergy)
         {
             this.rootrange = rootrange;
             this.extendrange = extendrange;
+            this.reprod_delay = reprod_delay;
         }
         public override string GetName()
         {
@@ -28,13 +30,14 @@ namespace WorldDev
             base.Update(board);
             if (board.Includes(this))
             {
-                if (lifetime % 1000 == 400)
+                if (lifetime % 1000 == reprod_delay)
                 {
                     Random generator = new();
-                    bool doreprod= generator.Next(100) <= 20;
+                    bool doreprod = generator.Next(100) <= 50;
                     if (doreprod)
                     {
-                        this.Extend(board);
+                        WrappedLog(String.Format("{0} has extended ", GetName()), ConsoleColor.Green);
+                        Extend(board);
                     }
                 }
                 lifetime += 1;
