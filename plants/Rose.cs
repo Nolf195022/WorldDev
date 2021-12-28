@@ -3,10 +3,10 @@
     public class Rose : Plant
     {
         public Rose() :
-            base("Rose", 20, 40, 15, 20)
+            base("Rose", 20, 80, 15, 20)
         {
         }
-        public void Extend(Board board)
+        public override void Extend(Board board)
         {
             board.Add(new Rose());
         }

@@ -1,59 +1,141 @@
 ﻿using System;
+using System.Threading;
 
 namespace WorldDev
 {
     public abstract class Animal : Organism
     {
-        private int visionrange;
-        private int contactrange;
-        private int attack_damage;
-        private bool femalegender;
-        public Animal(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage) :
+        public readonly int visionrange;
+        public readonly int contactrange;
+        public readonly int attack_damage;
+        public readonly bool femalegender;
+        protected bool ispregnant = false;
+        protected int pregnancyprogress = 0;
+        public int pregnancycooldown = 0;
+        public Animal(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage, int pregancycd=0) :
             base(name, maxhealt, maxenergy)
         {
             this.visionrange = visionrange;
             this.contactrange = contactrange;
             this.attack_damage = attack_damage;
-            Random generator = new Random();
-            femalegender = generator.Next(100) <= 50 ? true : false; //add random boolean.
+            Random generator = new ();
+            femalegender = generator.Next(100) <= 50;
+            pregnancycooldown = pregancycd;
         }
-        public void Reproduce(Animal animal)
+        public abstract void Reproduce(Board board);
+
+        public override string GetName()
         {
-            //ajouter un bébé à la mère apès une periode de gestation
+            return String.Format("{0}, id : {4}, {3}, ({1},{2}), hp :{5}, energie {6} ",name, x_pos, y_pos, femalegender ? "Female" : "Male", id, healt, energy);
+        }
+        public bool IsPregnant()
+        {
+            return ispregnant;
+        }
+        public void MakePregnant(Animal animal)
+        {
+            if (pregnancycooldown > 0) { return; }
+            Animal male = this;
+            Animal female = animal;
+            if (femalegender) { 
+                ispregnant = true;
+                female = this;
+                male = animal;
+            }
+            else 
+            { 
+                animal.ispregnant = true;
+            }
+            if (made_pregnant_message)
+            {
+               WrappedLog(String.Format("[{0}] made [{1}] pregnant ", male.GetName(), female.GetName()),ConsoleColor.Blue);
+            }
+        }
+        public override void Update(Board board)
+        {
+            base.Update(board);
+            if(board.Includes(this))
+            {
+                if (ispregnant)
+                {
+                    if (pregnancyprogress == 70)
+                    {
+                        ispregnant = false;
+                        pregnancyprogress = 0;
+                        pregnancycooldown = 1000;
+                        Random generator = new();
+                        bool doreprod = generator.Next(100) <= 30;
+                        if (doreprod)
+                        {
+                            Reproduce(board);
+                            WrappedLog(String.Format("{0} gave birth", GetName()), ConsoleColor.Green);
+                        }
+                        else
+                        {
+                            WrappedLog(String.Format("{0} lost her baby", GetName()), ConsoleColor.Yellow);
+                        }
+                    }
+                    else { pregnancyprogress += 1; }
+                }
+                pregnancycooldown -= 1;
+                board.MovementManager(this);
+            }   
         }
         public void Attack(Animal animal, Board board)
         {
-            Console.WriteLine(String.Format("{0} attacked {1} and inflicted {2} damage", this.GetName(), animal.GetName(),this.attack_damage));
-            if(animal.GetHealt()-this.attack_damage <= 0)
+            animal.LoseHealt(attack_damage);
+            if (animal.healt <= 0)
             {
+                WrappedLog(String.Format("{0} killed {1}", GetName(), animal.GetName()), ConsoleColor.Yellow);
+
                 board.Kill(animal);
-                Console.WriteLine(String.Format("{1} killed {0}", this.GetName(), animal.GetName(), this.attack_damage));
                 return;
             }
             else
             {
-                animal.LoseHealt(this.attack_damage);
+                WrappedLog(String.Format("{0} attacked {1} and inflicted {2} damage ({3} health left)", GetName(), animal.GetName(), attack_damage, animal.healt), ConsoleColor.Yellow);
+                //counter-attack
+                animal.Attack(this, board);
             }
         }
         public void Move(int x, int y, Board board)
         {
-            int xmax = board.getSize().Item1;
-            int ymax = board.getSize().Item2;
-            int newx = x + this.GetPos().Item1;
-            int newy = y + this.GetPos().Item2;
-            int oldx = this.GetPos().Item1;
-            int oldy = this.GetPos().Item2;
-            if (newx <= xmax)
+            int xmax = board.x_size;
+            int ymax = board.y_size;
+            int oldx = x_pos;
+            int oldy = y_pos;
+            int newx = x + oldx;
+            int newy = y + oldy;
+            if(newx > xmax) { newx = xmax; }
+            if (newx < 0) { newx = 0; }
+            if (newy > ymax) { newy = ymax; }
+            if (newy < 0) { newy = 0; }
+            AssignPos(newx, newy);
+            //Console.WriteLine(String.Format("{0} moved from ({1},{2})", GetName(), oldx, oldy));
+        }
+        private static int SetDirection(int actual, int target)
+        {
+            if (actual > target)
             {
-                this.AssignPos(newx, oldy);
+                if(actual - mouvementrange < target) { return target;}
+                return actual - mouvementrange;
             }
-            else { this.AssignPos(xmax, oldy);}
-            if (newy <= ymax)
+            if (actual < target)
             {
-                this.AssignPos(oldx, newy);
+                if (actual + mouvementrange > target) { return target; }
+                return actual + mouvementrange;
             }
-            else { this.AssignPos(oldx, ymax); }
-            Console.WriteLine(String.Format("{0} moved to {1}", GetName(), GetPos()));
+            return actual;
+        }
+        public void MoveTo(Entity entity)
+        {
+            int x = entity.GetPos().Item1;
+            int y = entity.GetPos().Item2;        
+            AssignPos(SetDirection(x_pos, x), SetDirection(y_pos, y));
+            if (approaching_message)
+            {
+                Console.WriteLine(String.Format("{0} is approaching {1}", GetName(), entity.GetName()));
+            }
         }
     }
 }

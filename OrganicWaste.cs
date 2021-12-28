@@ -6,5 +6,6 @@
             base("Organic waste")
         {
         }
+        public override void Update(Board board){}
     }
 }

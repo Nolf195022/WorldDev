@@ -6,7 +6,7 @@
             base("Acacia", 500, 200, 30, 40)
         {
         }
-        public void Extend(Board board)
+        public override void Extend(Board board)
         {
             board.Add(new Acacia());
         }

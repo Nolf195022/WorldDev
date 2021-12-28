@@ -8,8 +8,8 @@ namespace WorldDev
 {
     public abstract class Carnivore : Animal
     {
-        public Carnivore(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage) :
-            base(name, maxhealt, maxenergy, visionrange, contactrange, attack_damage)
+        public Carnivore(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage, int pregancycd = 0) :
+            base(name, maxhealt, maxenergy, visionrange, contactrange, attack_damage, pregancycd)
         {
         }
         public void Eat(Meat meat, Board board)
