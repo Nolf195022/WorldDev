@@ -177,7 +177,7 @@ namespace WorldDev
             foreach (Entity entity in entities.ToList())
             {
                 if (typeof(OrganicWaste).IsAssignableFrom(entity.GetType())) { continue; }
-                //Thread.Sleep(loop_cooldown);
+                Thread.Sleep(loop_cooldown);
                 entity.Update(this);
             }
         }

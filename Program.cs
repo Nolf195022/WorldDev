@@ -38,12 +38,12 @@ namespace WorldDev
                 }
             }
             int timeunit = 0;
-            while(map.GetPop()>0 && timeunit < 3000)
+            while(map.GetPop()>0 && timeunit < infiniteloop_prevent)
             {
                 timeunit += 1;
                 map.Update();
             }
-            if(timeunit == 3000)
+            if(timeunit == infiniteloop_prevent)
             {
                 WrappedLog(new string('-', 40), ConsoleColor.Red);
                 WrappedLog("Life is enduring and could prosper forever", ConsoleColor.Red);
