@@ -6,7 +6,6 @@ namespace WorldDev
     {
         public readonly int rootrange;
         public readonly int extendrange;
-        protected int lifetime = 0 ;
         protected int reprod_delay;
         public Plant(string name, int maxhealt, int maxenergy, int rootrange, int extendrange, int reprod_delay) :
             base(name, maxhealt, maxenergy)
@@ -30,7 +29,8 @@ namespace WorldDev
             base.Update(board);
             if (board.Includes(this))
             {
-                if (lifetime % 1000 == reprod_delay)
+                lifetime += 1;
+                if (lifetime % reprod_delay == 0)
                 {
                     Random generator = new();
                     bool doreprod = generator.Next(100) <= 50;
@@ -40,7 +40,7 @@ namespace WorldDev
                         Extend(board);
                     }
                 }
-                lifetime += 1;
+                
             }
         }
     }

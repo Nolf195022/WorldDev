@@ -8,11 +8,12 @@ namespace WorldDev
         protected int energy;
         public readonly int maxhealt;
         public readonly int maxenergy;
+        protected int lifetime = 0;
         public Organism(string name, int maxhealt, int maxenergy):
             base(name)
         {
-            this.healt = maxhealt;
-            this.energy = maxenergy;
+            healt = maxhealt;
+            energy = maxenergy;
             this.maxhealt = maxhealt;
             this.maxenergy = maxenergy;
         }

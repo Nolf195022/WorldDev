@@ -37,9 +37,25 @@ namespace WorldDev
                         break;
                 }
             }
-            while(map.GetPop()>0)
+            int timeunit = 0;
+            while(map.GetPop()>0 && timeunit < 3000)
             {
+                timeunit += 1;
                 map.Update();
+            }
+            if(timeunit == 3000)
+            {
+                WrappedLog(new string('-', 40), ConsoleColor.Red);
+                WrappedLog("Life is enduring and could prosper forever", ConsoleColor.Red);
+                WrappedLog(String.Format("{1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
+                WrappedLog(new string('-', 40), ConsoleColor.Red);
+            }
+            else
+            {
+                WrappedLog(new string('-', 40), ConsoleColor.Red);
+                WrappedLog("There are no more life forms in this world", ConsoleColor.Red);
+                WrappedLog(String.Format("Life lasted for {0} timeunits and {1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
+                WrappedLog(new string('-', 40), ConsoleColor.Red);
             }
         }
     }

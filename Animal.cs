@@ -12,6 +12,7 @@ namespace WorldDev
         protected bool ispregnant = false;
         protected int pregnancyprogress = 0;
         public int pregnancycooldown = 0;
+        
         public Animal(string name, int maxhealt, int maxenergy, int visionrange, int contactrange, int attack_damage, int pregancycd=0) :
             base(name, maxhealt, maxenergy)
         {
@@ -56,6 +57,12 @@ namespace WorldDev
             base.Update(board);
             if(board.Includes(this))
             {
+                lifetime += 1;
+                if(lifetime % 30 == 0)
+                {
+                    WrappedLog(String.Format("{0} just pooped", GetName()), ConsoleColor.DarkYellow);
+                    board.Add(new OrganicWaste());
+                }
                 if (ispregnant)
                 {
                     if (pregnancyprogress == 70)

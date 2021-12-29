@@ -22,6 +22,10 @@ namespace WorldDev
         {
             return nb_organisms;
         }
+        public int GetAI()
+        {
+            return increment;
+        }
         public bool Includes(Entity entity)
         {
             return entities.Contains(entity);
