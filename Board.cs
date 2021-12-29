@@ -132,7 +132,7 @@ namespace WorldDev
                 }
                 if (isanimal)
                 {
-                    bool Oppositgender = (entity as Animal).femalegender != animal.femalegender;
+                    bool Oppositgender = (entity as Animal).gender != animal.gender;
                     bool sameFamily = entity.GetType() == animal.GetType();
                     bool ispregnant = (entity as Animal).IsPregnant() || animal.IsPregnant();
                     if (Oppositgender && sameFamily && !ispregnant)

@@ -8,7 +8,7 @@ namespace WorldDev
         public readonly int visionrange;
         public readonly int contactrange;
         public readonly int attack_damage;
-        public readonly bool femalegender;
+        public readonly string gender;
         protected bool ispregnant = false;
         protected int pregnancyprogress = 0;
         public int pregnancycooldown = 0;
@@ -19,14 +19,14 @@ namespace WorldDev
             this.contactrange = contactrange;
             this.attack_damage = attack_damage;
             Random generator = new ();
-            femalegender = generator.Next(100) <= 50;
+            gender = generator.Next(100) <= 50 ? "Male" : "Female";
             pregnancycooldown = pregancycd;
         }
         public abstract void Reproduce(Board board);
 
         public override string GetName()
         {
-            return String.Format("{0}, id : {4}, {3}, ({1},{2}), hp :{5}, energie {6} ",name, x_pos, y_pos, femalegender ? "Female" : "Male", id, healt, energy);
+            return String.Format("{0}, id : {4}, {3}, ({1},{2}), hp :{5}, energie {6} ",name, x_pos, y_pos, gender, id, healt, energy);
         }
         public bool IsPregnant()
         {
@@ -37,7 +37,7 @@ namespace WorldDev
             if (pregnancycooldown > 0) { return; }
             Animal male = this;
             Animal female = animal;
-            if (femalegender) { 
+            if (gender == "Female") { 
                 ispregnant = true;
                 female = this;
                 male = animal;
