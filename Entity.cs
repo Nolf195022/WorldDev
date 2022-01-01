@@ -3,7 +3,7 @@ using System;
 
 namespace WorldDev
 {
-    public abstract class Entity : GlobalVar
+    public abstract class Entity
     {
         public readonly string name;
         protected int x_pos;

@@ -36,7 +36,7 @@ namespace WorldDev
                     bool doreprod = generator.Next(100) <= 50;
                     if (doreprod)
                     {
-                        WrappedLog(String.Format("{0} has extended ", GetName()), ConsoleColor.Green);
+                        GlobalVar.WrappedLog(String.Format("{0} has extended ", GetName()), ConsoleColor.Green);
                         Extend(board);
                     }
                 }

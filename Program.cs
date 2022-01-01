@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace WorldDev
 {
-    class Program : GlobalVar
+    class Program
     {
         static void Main()
         {
@@ -15,7 +15,7 @@ namespace WorldDev
             entities.Add("Rose");
             entities.Add("Lion");
             entities.Add("Giraffe");
-            for (int i = 0; i < start_entity_count; i++)
+            for (int i = 0; i < GlobalVar.start_entity_count; i++)
             {
                 Random generator = new();
                 switch (generator.Next(entities.Count))
@@ -38,24 +38,24 @@ namespace WorldDev
                 }
             }
             int timeunit = 0;
-            while(map.GetPop()>0 && timeunit < infiniteloop_prevent)
+            while(map.GetPop()>0 && timeunit < GlobalVar.infiniteloop_prevent)
             {
                 timeunit += 1;
                 map.Update();
             }
-            if(timeunit == infiniteloop_prevent)
+            if(timeunit == GlobalVar.infiniteloop_prevent)
             {
-                WrappedLog(new string('-', 40), ConsoleColor.Red);
-                WrappedLog("Life is enduring and could prosper forever", ConsoleColor.Red);
-                WrappedLog(String.Format("{1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
-                WrappedLog(new string('-', 40), ConsoleColor.Red);
+                GlobalVar.WrappedLog(new string('-', 40), ConsoleColor.Red);
+                GlobalVar.WrappedLog("Life is enduring and could prosper forever", ConsoleColor.Red);
+                GlobalVar.WrappedLog(String.Format("{1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
+                GlobalVar.WrappedLog(new string('-', 40), ConsoleColor.Red);
             }
             else
             {
-                WrappedLog(new string('-', 40), ConsoleColor.Red);
-                WrappedLog("There are no more life forms in this world", ConsoleColor.Red);
-                WrappedLog(String.Format("Life lasted for {0} timeunits and {1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
-                WrappedLog(new string('-', 40), ConsoleColor.Red);
+                GlobalVar.WrappedLog(new string('-', 40), ConsoleColor.Red);
+                GlobalVar.WrappedLog("There are no more life forms in this world", ConsoleColor.Red);
+                GlobalVar.WrappedLog(String.Format("Life lasted for {0} timeunits and {1} organisms have lived on this world ", timeunit, map.GetAI()), ConsoleColor.Red);
+                GlobalVar.WrappedLog(new string('-', 40), ConsoleColor.Red);
             }
         }
     }

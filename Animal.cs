@@ -47,9 +47,9 @@ namespace WorldDev
             { 
                 animal.ispregnant = true;
             }
-            if (made_pregnant_message)
+            if (GlobalVar.made_pregnant_message)
             {
-               WrappedLog(String.Format("[{0}] made [{1}] pregnant ", male.GetName(), female.GetName()),ConsoleColor.Blue);
+               GlobalVar.WrappedLog(String.Format("[{0}] made [{1}] pregnant ", male.GetName(), female.GetName()),ConsoleColor.Blue);
             }
         }
         public override void Update(Board board)
@@ -60,7 +60,7 @@ namespace WorldDev
                 lifetime += 1;
                 if(lifetime % 30 == 0)
                 {
-                    WrappedLog(String.Format("{0} just pooped", GetName()), ConsoleColor.DarkYellow);
+                    GlobalVar.WrappedLog(String.Format("{0} just pooped", GetName()), ConsoleColor.DarkYellow);
                     board.Add(new OrganicWaste());
                 }
                 if (ispregnant)
@@ -75,11 +75,11 @@ namespace WorldDev
                         if (doreprod)
                         {
                             Reproduce(board);
-                            WrappedLog(String.Format("{0} gave birth", GetName()), ConsoleColor.Green);
+                            GlobalVar.WrappedLog(String.Format("{0} gave birth", GetName()), ConsoleColor.Green);
                         }
                         else
                         {
-                            WrappedLog(String.Format("{0} lost her baby", GetName()), ConsoleColor.Yellow);
+                            GlobalVar.WrappedLog(String.Format("{0} lost her baby", GetName()), ConsoleColor.Yellow);
                         }
                     }
                     else { pregnancyprogress += 1; }
@@ -93,14 +93,14 @@ namespace WorldDev
             animal.LoseHealt(attack_damage);
             if (animal.healt <= 0)
             {
-                WrappedLog(String.Format("{0} killed {1}", GetName(), animal.GetName()), ConsoleColor.Yellow);
+                GlobalVar.WrappedLog(String.Format("{0} killed {1}", GetName(), animal.GetName()), ConsoleColor.Yellow);
 
                 board.Kill(animal);
                 return;
             }
             else
             {
-                WrappedLog(String.Format("{0} attacked {1} and inflicted {2} damage ({3} health left)", GetName(), animal.GetName(), attack_damage, animal.healt), ConsoleColor.Yellow);
+                GlobalVar.WrappedLog(String.Format("{0} attacked {1} and inflicted {2} damage ({3} health left)", GetName(), animal.GetName(), attack_damage, animal.healt), ConsoleColor.Yellow);
                 //counter-attack
                 animal.Attack(this, board);
             }
@@ -124,13 +124,13 @@ namespace WorldDev
         {
             if (actual > target)
             {
-                if(actual - mouvementrange < target) { return target;}
-                return actual - mouvementrange;
+                if(actual - GlobalVar.mouvementrange < target) { return target;}
+                return actual - GlobalVar.mouvementrange;
             }
             if (actual < target)
             {
-                if (actual + mouvementrange > target) { return target; }
-                return actual + mouvementrange;
+                if (actual + GlobalVar.mouvementrange > target) { return target; }
+                return actual + GlobalVar.mouvementrange;
             }
             return actual;
         }
@@ -139,7 +139,7 @@ namespace WorldDev
             int x = entity.GetPos().Item1;
             int y = entity.GetPos().Item2;        
             AssignPos(SetDirection(x_pos, x), SetDirection(y_pos, y));
-            if (approaching_message)
+            if (GlobalVar.approaching_message)
             {
                 Console.WriteLine(String.Format("{0} is approaching {1}", GetName(), entity.GetName()));
             }

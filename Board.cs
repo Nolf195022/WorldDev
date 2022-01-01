@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace WorldDev
 {
-    public class Board : GlobalVar
+    public class Board
     {
         readonly Random random = new ();
         public readonly int x_size;
@@ -32,9 +32,9 @@ namespace WorldDev
         }
         public void Kill(Entity dying_entity, string reason="", bool spawn=true)
         {
-            if (die_message && reason!= "")
+            if (GlobalVar.die_message && reason!= "")
             {
-                WrappedLog(reason, ConsoleColor.Red);
+                GlobalVar.WrappedLog(reason, ConsoleColor.Red);
             }
             entities.Remove(dying_entity);
             int x = dying_entity.GetPos().Item1;
@@ -50,7 +50,7 @@ namespace WorldDev
                     nb_organisms -= 1;
                     break;
             }
-            WrappedLog(String.Format("{0} organisms left", nb_organisms), ConsoleColor.Red);
+            GlobalVar.WrappedLog(String.Format("{0} organisms left", nb_organisms), ConsoleColor.Red);
 
         }
         public void Add(Entity newentity, int x=-1, int y=-1)
@@ -88,7 +88,7 @@ namespace WorldDev
                     if (animal.IsInRange(entity, animal.visionrange))
                     {
                         close_entities.Add(entity);
-                        if (closeto_message)
+                        if (GlobalVar.closeto_message)
                         {
                             Console.WriteLine(String.Format("{0} IS CLOSE TO {1}", animal.GetName(), entity.GetName()));
                         }
@@ -168,8 +168,8 @@ namespace WorldDev
                     
                 }
             }
-            int dx = random.Next(100) <= 50 ? random.Next(mouvementrange) : random.Next(mouvementrange) * -1;
-            int dy = random.Next(100) <= 50 ? random.Next(mouvementrange) : random.Next(mouvementrange) * -1;
+            int dx = random.Next(100) <= 50 ? random.Next(GlobalVar.mouvementrange) : random.Next(GlobalVar.mouvementrange) * -1;
+            int dy = random.Next(100) <= 50 ? random.Next(GlobalVar.mouvementrange) : random.Next(GlobalVar.mouvementrange) * -1;
             animal.Move(dx, dy, this);
         }
         public void Update()
@@ -177,7 +177,7 @@ namespace WorldDev
             foreach (Entity entity in entities.ToList())
             {
                 if (typeof(OrganicWaste).IsAssignableFrom(entity.GetType())) { continue; }
-                Thread.Sleep(loop_cooldown);
+                Thread.Sleep(GlobalVar.loop_cooldown);
                 entity.Update(this);
             }
         }

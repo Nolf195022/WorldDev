@@ -39,7 +39,7 @@ namespace WorldDev
                 return;
             }
             this.energy += amount;
-            if (energy_conversion_message)
+            if (GlobalVar.energy_conversion_message)
             {
                 Console.WriteLine(String.Format("{0} has converted {1} health ({2} left) into {1} energy",GetName(), amount, healt));
             }
